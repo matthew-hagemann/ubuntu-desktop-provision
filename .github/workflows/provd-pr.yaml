@@ -16,7 +16,7 @@ jobs:
       - name: Build cmd/authd with withexamplebroker tag
         run: |
           set -eu
-          go build ./cmd/provd
+          go build ./provd/cmd/provd
 
   go-tests:
     name: "Go: Tests"
@@ -26,10 +26,10 @@ jobs:
         run: |
           set -eu
 
-          go test -coverpkg=./... -coverprofile=/tmp/coverage.out -covermode=set ./... -shuffle=on
+          go test -coverpkg=./... -coverprofile=/tmp/coverage.out -covermode=set ./provd/... -shuffle=on
       - name: Run tests (with race detector)
         run: |
-          go test -race ./...
+          go test -race ./provd/...
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
