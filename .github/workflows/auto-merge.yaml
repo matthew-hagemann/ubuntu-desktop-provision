@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   dependabot:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, x64]
     if: ${{github.actor == 'dependabot[bot]'}}
     steps:
       - name: Merge PR

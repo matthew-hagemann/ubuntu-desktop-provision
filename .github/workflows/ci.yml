@@ -14,7 +14,7 @@ env:
 
 jobs:
   analyze:
-    runs-on: ubuntu-22.04
+    runs-on: [self-hosted, Linux, x64]
     steps:
     - uses: actions/checkout@v3
       with:
@@ -28,7 +28,7 @@ jobs:
     - run: melos analyze
 
   bootstrap:
-    runs-on: ubuntu-22.04
+    runs-on: [self-hosted, Linux, x64]
     strategy:
       matrix:
         target:
@@ -59,7 +59,7 @@ jobs:
           SUBIQUITY_REPLAY_TIMESCALE: 100
 
   coverage:
-    runs-on: ubuntu-22.04
+    runs-on: [self-hosted, Linux, x64]
     strategy:
       matrix:
         package:
@@ -89,7 +89,7 @@ jobs:
         token: ${{secrets.CODECOV_TOKEN}}
 
   format:
-    runs-on: ubuntu-22.04
+    runs-on: [self-hosted, Linux, x64]
     steps:
     - uses: actions/checkout@v3
       with:
@@ -103,7 +103,7 @@ jobs:
     - run: melos format
 
   init:
-    runs-on: ubuntu-22.04
+    runs-on: [self-hosted, Linux, x64]
     strategy:
       matrix:
         target:
@@ -123,7 +123,7 @@ jobs:
         working-directory: packages/ubuntu_init
 
   mocks:
-    runs-on: ubuntu-22.04
+    runs-on: [self-hosted, Linux, x64]
     steps:
     - uses: actions/checkout@v3
       with:
@@ -149,7 +149,7 @@ jobs:
         delete-branch: true
 
   l10n:
-    runs-on: ubuntu-22.04
+    runs-on: [self-hosted, Linux, x64]
     steps:
     - uses: actions/checkout@v3
       with:
@@ -175,7 +175,7 @@ jobs:
         delete-branch: true
 
   test:
-    runs-on: ubuntu-22.04
+    runs-on: [self-hosted, Linux, x64]
     steps:
     - uses: actions/checkout@v3
       with:

@@ -4,7 +4,7 @@ on: [issues, issue_comment]
 jobs:
   sync-issues:
     name: Sync issues to Jira
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, x64]
     steps:
       - uses: canonical/sync-issues-github-jira@v1
         with:
