@@ -12,7 +12,8 @@ jobs:
         uses: canonical/desktop-engineering/gh-actions/go/code-sanity@main
         with:
           golangci-lint-configfile: ".golangci.yaml"
-          tools-directory: "provd/tools"
+          tools-directory: "provd"
+          working-directory: "provd"
       - name: Build cmd/authd with withexamplebroker tag
         run: |
           set -eu
