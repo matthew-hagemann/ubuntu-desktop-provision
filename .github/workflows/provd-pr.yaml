@@ -6,7 +6,7 @@ on:
 jobs:
   go-sanity:
     name: "Go: Code sanity"
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, x64]
     steps:
       - name: Go code sanity check
         uses: canonical/desktop-engineering/gh-actions/go/code-sanity@main
@@ -21,7 +21,7 @@ jobs:
 
   go-tests:
     name: "Go: Tests"
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, x64]
     steps:
       - name: Run tests
         run: |
