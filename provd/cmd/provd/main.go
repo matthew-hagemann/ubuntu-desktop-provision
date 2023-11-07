@@ -27,6 +27,8 @@ type app interface {
 func run(a app) int {
 	defer installSignalHandler(a)()
 
+	fmt.Println("foo")
+
 	if err := a.Run(); err != nil {
 		slog.Error(fmt.Sprintf("%v", err))
 
