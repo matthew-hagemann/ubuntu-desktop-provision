@@ -8,6 +8,11 @@ jobs:
     name: "Go: Code sanity"
     runs-on: [self-hosted, Linux, x64]
     steps:
+      - name: Install dependencies
+        run: |
+          sudo DEBIAN_FRONTEND=noninteractive apt update
+          sudo DEBIAN_FRONTEND=noninteractive apt install -y libpam-dev libglib2.0-dev gcc gettext
+      - uses: actions/checkout@v4
       - name: Go code sanity check
         uses: canonical/desktop-engineering/gh-actions/go/code-sanity@main
         with:
