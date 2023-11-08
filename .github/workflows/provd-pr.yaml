@@ -22,7 +22,7 @@ jobs:
       - name: Build cmd/authd with withexamplebroker tag
         run: |
           set -eu
-          go build provd/cmd/provd
+          go build ./provd/cmd/provd
 
   go-tests:
     name: "Go: Tests"
