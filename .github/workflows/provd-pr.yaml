@@ -16,7 +16,7 @@ jobs:
       - name: Go code sanity check
         uses: canonical/desktop-engineering/gh-actions/go/code-sanity@main
         with:
-          golangci-lint-configfile: ".golangci.yaml"
+          golangci-lint-configfile: "./provd/.golangci.yaml"
           tools-directory: "./provd/tools"
           working-directory: "./provd"
       - name: Build cmd/authd with withexamplebroker tag
