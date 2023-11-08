@@ -19,9 +19,8 @@ jobs:
           golangci-lint-configfile: ".golangci.yaml"
           tools-directory: "./provd/tools"
           working-directory: "./provd"
-      - name: Build cmd/authd with withexamplebroker tag
+      - name: Build cmd/provd
         run: |
-          pwd
           set -eu
           go build ./provd/cmd/provd
 
