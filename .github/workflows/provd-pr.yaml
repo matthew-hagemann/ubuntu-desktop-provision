@@ -11,7 +11,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo DEBIAN_FRONTEND=noninteractive apt update
-          sudo DEBIAN_FRONTEND=noninteractive apt install -y libpam-dev libglib2.0-dev gcc gettext
+          sudo DEBIAN_FRONTEND=noninteractive apt install -y libglib2.0-dev gcc gettext libpam0g-dev
       - uses: actions/checkout@v4
       - name: Go code sanity check
         uses: canonical/desktop-engineering/gh-actions/go/code-sanity@main
