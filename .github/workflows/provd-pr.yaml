@@ -39,12 +39,10 @@ jobs:
         run: |
           set -eu
 
-          cd provd
           go test -coverpkg=./... -coverprofile=/tmp/coverage.out -covermode=set ./... -shuffle=on
       - name: Run tests (with race detector)
         run: |
 
-          cd provd
           go test -race ./...
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3

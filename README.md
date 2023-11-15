@@ -12,8 +12,7 @@ classDiagram
     ubuntu_init <|-- ubuntu_core_desktop_init
     ubuntu_init <|-- ubuntu_welcome
     ubuntu_provision <|-- ubuntu_bootstrap
-    ubuntu_provision <|-- ubuntu_init
-    ubuntu_provision: - shared pages
+    ubuntu_provision <|-- ubuntu_init ubuntu_provision: - shared pages
     ubuntu_provision: - service interfaces
     ubuntu_bootstrap: - subiquity-based services
     ubuntu_bootstrap: - configurable subset of pages
