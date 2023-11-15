@@ -3,6 +3,12 @@ on:
   pull_request:
     paths:
       - provd/**
+env:
+  apt_deps: >-
+    libglib2.0-dev
+    gcc
+    gettext
+    libpam0g-dev
 jobs:
   go-sanity:
     name: "Go: Code sanity"
@@ -11,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo DEBIAN_FRONTEND=noninteractive apt update
-          sudo DEBIAN_FRONTEND=noninteractive apt install -y libglib2.0-dev gcc gettext libpam0g-dev
+          sudo DEBIAN_FRONTEND=noninteractive apt install -y ${{ env.apt_deps }}
       - uses: actions/checkout@v4
       - name: Go code sanity check
         uses: canonical/desktop-engineering/gh-actions/go/code-sanity@main
