@@ -22,6 +22,7 @@ jobs:
       - name: Build cmd/provd
         run: |
           set -eu
+          cd provd
           go build ./cmd/provd
 
   go-tests:
