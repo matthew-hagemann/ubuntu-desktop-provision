@@ -6,7 +6,7 @@ on:
 jobs:
   go-sanity:
     name: "Go: Code sanity"
-    runs-on: [self-hosted, Linux, x64]
+    runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
         run: |
