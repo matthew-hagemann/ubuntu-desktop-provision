@@ -8,4 +8,4 @@ ignore:
 flags:
   provd:
     paths:
-      - "provd/*"
+      - provd/*
