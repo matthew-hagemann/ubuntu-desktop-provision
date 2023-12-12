@@ -39,6 +39,10 @@ Copyright: fsnotify Authors.
  2012, The Go Authors.
 License: BSD-3-clause
 
+Files: vendor/github.com/gobus/dbus/v5/*
+Copyright: 2013, Georg Reinke <guelfey at gmail dot com>, Google
+License: BSD-2-clause
+
 Files: vendor/github.com/golang/protobuf/*
 Copyright: 2009-2023, The Go Authors.
 License: BSD-3-clause
