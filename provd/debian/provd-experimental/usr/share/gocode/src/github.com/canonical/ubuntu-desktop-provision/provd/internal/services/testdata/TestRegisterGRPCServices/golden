@@ -1,0 +1,18 @@
+provd.HelloWorldService:
+    methods:
+        - name: SayHello
+          isclientstream: false
+          isserverstream: false
+    metadata: provd.proto
+user.UserService:
+    methods:
+        - name: GetUser
+          isclientstream: false
+          isserverstream: false
+        - name: CreateUser
+          isclientstream: false
+          isserverstream: false
+        - name: ValidateUsername
+          isclientstream: false
+          isserverstream: false
+    metadata: proto/user.proto

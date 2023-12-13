@@ -1,5 +1,65 @@
-provd (0.1) UNRELEASED; urgency=low
+provd (0.12) mantic; urgency=medium
 
-  * Initial release.*
+  * Go version bump
+
+ -- Matt <matt.hagemann@canonical.com>  Tue, 12 Dec 2023 17:25:05 +0200
+
+provd (0.11) mantic; urgency=medium
+
+  * Additional fixes for the test suite
+
+ -- Matt <matt.hagemann@canonical.com>  Tue, 12 Dec 2023 17:25:05 +0200
+
+provd (0.10) mantic; urgency=medium
+
+  * Adding back in tests, and rules for tests
+
+ -- Matt <matt.hagemann@canonical.com>  Tue, 12 Dec 2023 17:00:33 +0200
+
+provd (0.9) mantic; urgency=medium
+
+  * Adding back in tests
+
+ -- Matt <matt.hagemann@canonical.com>  Tue, 12 Dec 2023 16:38:55 +0200
+
+provd (0.7) mantic; urgency=medium
+
+  * Removing tests until can be debuged
+
+ -- Matt <matt.hagemann@canonical.com>  Tue, 12 Dec 2023 14:27:13 +0200
+
+provd (0.6) mantic; urgency=medium
+
+  * Fixed a test issue
+
+ -- Matt <matt.hagemann@canonical.com>  Tue, 12 Dec 2023 14:27:13 +0200
+
+provd (0.5) mantic; urgency=medium
+
+  * Fixed a test issue
+
+ -- Matt <matt.hagemann@canonical.com>  Tue, 12 Dec 2023 13:20:09 +0200
+
+provd (0.4) mantic; urgency=medium
+
+  * Fixed a vendoring issue
+
+ -- Matt <matt.hagemann@canonical.com>  Tue, 12 Dec 2023 13:18:10 +0200
+
+provd (0.3) mantic; urgency=medium
+
+  * User service impl
+
+ -- Matt <matt.hagemann@canonical.com>  Tue, 12 Dec 2023 12:48:06 +0200
+
+provd (0.2) mantic; urgency=medium
+
+  * Initial release for Mantic
+
+ -- Matt <matt.hagemann@canonical.com>  Tue, 12 Dec 2023 10:31:24 +0200
+
+provd (0.1) jammy; urgency=low
+
+  * Initial release
 
  -- Matt <matt.hagemann@canonical.com>  Wed, 29 Nov 2023 17:06:13 +0200
