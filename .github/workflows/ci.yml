@@ -153,11 +153,14 @@ jobs:
     name: "Go: Code sanity"
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
           go-version-file: "./provd/go.mod"
-      - uses: actions/checkout@v4
+          
       - name: Go code sanity check
         uses: matthew-hagemann/desktop-engineering/gh-actions/go/code-sanity@main
         with:
