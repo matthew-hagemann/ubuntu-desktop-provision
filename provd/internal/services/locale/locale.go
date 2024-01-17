@@ -43,7 +43,7 @@ func (s *Service) GetLocale(ctx context.Context, req *emptypb.Empty) (*pb.GetLoc
 		return nil, status.Errorf(codes.InvalidArgument, "received a nil request")
 	}
     // Get the locale from the dbus object properties.
-    locale, err := s.Locale.GetProperty("Locale")
+    locale, err := s.Locale.GetProperty("org.freedesktop.locale1." + "Locale")
     if err != nil {
         return nil, status.Errorf(codes.Internal, "failed to get locale: %v", err)
     }
@@ -58,7 +58,12 @@ func (s *Service) SetLocale(ctx context.Context, req *pb.SetLocaleRequest) (*emp
     if req.Locale == "" {
         return nil, status.Errorf(codes.InvalidArgument, "locale must be specified")
     }
+
+	//err = userObject.Call(consts.DbusUserPrefix+".SetPassword", 0, hashed, "").Err
     // Set the locale using the dbus object.
-    s.Locale.Call("SetLocale", 0, req.Locale)
+    err := s.Locale.Call("org.freedesktop.locale1." + "SetLocale", 0, []string{req.Locale}, false).Err
+    if err != nil {
+        return nil, status.Errorf(codes.Internal, "failed to set locale: %v", err)
+    }
     return &emptypb.Empty{}, nil
 }

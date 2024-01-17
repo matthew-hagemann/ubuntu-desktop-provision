@@ -8,6 +8,7 @@ import (
 
 	"github.com/canonical/ubuntu-desktop-provision/provd"
 	"github.com/canonical/ubuntu-desktop-provision/provd/internal/services/hello"
+	"github.com/canonical/ubuntu-desktop-provision/provd/internal/services/locale"
 	"github.com/canonical/ubuntu-desktop-provision/provd/internal/services/user"
 	pb "github.com/canonical/ubuntu-desktop-provision/provd/protos"
 	"github.com/godbus/dbus/v5"
@@ -21,6 +22,7 @@ import (
 type Manager struct {
 	helloService hello.Service
 	userService  user.Service
+    localeService locale.Service
 	bus          *dbus.Conn
 }
 
@@ -28,7 +30,15 @@ type dbusConnectionAdapter struct {
 	*dbus.Conn
 }
 
+type dbusConnectionAdapter2 struct {
+	*dbus.Conn
+}
+
 func (bus dbusConnectionAdapter) Object(iface string, path dbus.ObjectPath) user.DbusObject {
+	return bus.Conn.Object(iface, path)
+}
+
+func (bus dbusConnectionAdapter2) Object(iface string, path dbus.ObjectPath) locale.DbusObject {
 	return bus.Conn.Object(iface, path)
 }
 
@@ -48,9 +58,12 @@ func NewManager(ctx context.Context) (m *Manager, err error) {
 
 	userService := user.New(dbusConnectionAdapter{bus})
 
+    localeService := locale.New(dbusConnectionAdapter2{bus})
+
 	return &Manager{
 		helloService: helloService,
 		userService:  *userService,
+        localeService: *localeService,
 		bus:          bus,
 	}, nil
 }
@@ -63,6 +76,7 @@ func (m Manager) RegisterGRPCServices(ctx context.Context) *grpc.Server {
 
 	provd.RegisterHelloWorldServiceServer(grpcServer, &m.helloService)
 	pb.RegisterUserServiceServer(grpcServer, &m.userService)
+    pb.RegisterLocaleServiceServer(grpcServer, &m.localeService)
 	return grpcServer
 }
 
