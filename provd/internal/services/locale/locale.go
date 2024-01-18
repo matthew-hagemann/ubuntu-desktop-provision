@@ -3,6 +3,7 @@ package locale
 
 import (
 	"context"
+	"regexp"
 
 	pb "github.com/canonical/ubuntu-desktop-provision/provd/protos"
 	"github.com/godbus/dbus/v5"
@@ -47,7 +48,14 @@ func (s *Service) GetLocale(ctx context.Context, req *emptypb.Empty) (*pb.GetLoc
     if err != nil {
         return nil, status.Errorf(codes.Internal, "failed to get locale: %v", err)
     }
-    return &pb.GetLocaleResponse{Locale: locale.String()}, nil
+     re := regexp.MustCompile(`LANG=([a-zA-Z_]+\.UTF-8)`)
+    matches := re.FindStringSubmatch(locale.String())
+    if len(matches) < 2 {
+        return nil, status.Errorf(codes.Internal, "unexpected locale format")
+    }
+    extractedLocale := matches[1]
+
+    return &pb.GetLocaleResponse{Locale: extractedLocale}, nil
 }
 
 func (s *Service) SetLocale(ctx context.Context, req *pb.SetLocaleRequest) (*emptypb.Empty, error) {
