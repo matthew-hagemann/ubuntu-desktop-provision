@@ -8,12 +8,10 @@ import (
 	"log/slog"
 
 	"github.com/canonical/ubuntu-desktop-provision/provd/internal/services/accessibility"
-	"github.com/canonical/ubuntu-desktop-provision/provd/internal/services/chown"
 	"github.com/canonical/ubuntu-desktop-provision/provd/internal/services/gdm"
 	"github.com/canonical/ubuntu-desktop-provision/provd/internal/services/keyboard"
 	"github.com/canonical/ubuntu-desktop-provision/provd/internal/services/locale"
 	"github.com/canonical/ubuntu-desktop-provision/provd/internal/services/privacy"
-	"github.com/canonical/ubuntu-desktop-provision/provd/internal/services/pro"
 	"github.com/canonical/ubuntu-desktop-provision/provd/internal/services/timezone"
 	"github.com/canonical/ubuntu-desktop-provision/provd/internal/services/user"
 	pb "github.com/canonical/ubuntu-desktop-provision/provd/protos"
@@ -32,8 +30,6 @@ type Manager struct {
 	privacyService       privacy.Service
 	timezoneService      timezone.Service
 	accessibilityService accessibility.Service
-	proService           pro.Service
-	chownService         chown.Service
 	gdmService           *gdm.Service
 	bus                  *dbus.Conn
 }
@@ -91,16 +87,6 @@ func NewManager(ctx context.Context) (m *Manager, e error) {
 		return nil, status.Errorf(codes.Internal, "%s", errs)
 	}
 
-	proService, err := pro.New()
-	if err != nil {
-		return nil, status.Errorf(codes.Internal, "failed to create pro service: %s", err)
-	}
-
-	chownService, err := chown.New()
-	if err != nil {
-		return nil, status.Errorf(codes.Internal, "failed to create chown service: %s", err)
-	}
-
 	return &Manager{
 		userService:          *userService,
 		localeService:        *localeService,
@@ -108,8 +94,6 @@ func NewManager(ctx context.Context) (m *Manager, e error) {
 		privacyService:       *privacyService,
 		timezoneService:      *timezoneService,
 		accessibilityService: *accessibilityService,
-		proService:           *proService,
-		chownService:         *chownService,
 		gdmService:           gdmService,
 		bus:                  bus,
 	}, nil
@@ -127,8 +111,6 @@ func (m Manager) RegisterGRPCServices(ctx context.Context) *grpc.Server {
 	pb.RegisterPrivacyServiceServer(grpcServer, &m.privacyService)
 	pb.RegisterTimezoneServiceServer(grpcServer, &m.timezoneService)
 	pb.RegisterAccessibilityServiceServer(grpcServer, &m.accessibilityService)
-	pb.RegisterProServiceServer(grpcServer, &m.proService)
-	pb.RegisterChownServiceServer(grpcServer, &m.chownService)
 
 	if m.gdmService != nil {
 		pb.RegisterGdmServiceServer(grpcServer, m.gdmService)

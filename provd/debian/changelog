@@ -1,3 +1,9 @@
+provd (0.1.2+24.04) noble-security; urgency=medium
+
+  * Remove Ubuntu Pro and Chmod services
+
+ -- Matthew Gary Hagemann <matt.hagemann@canonical.com>  Thu, 18 Jul 2024 12:31:09 +0200
+
 provd (0.1.2) noble; urgency=medium
 
   * provd to use provd group, not gnome-initial-setup group.
