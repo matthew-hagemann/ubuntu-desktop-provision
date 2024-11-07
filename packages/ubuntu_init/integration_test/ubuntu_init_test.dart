@@ -24,7 +24,7 @@ void main() {
 
     await tester.runApp(() => runInitApp([]));
 
-    await tester.testLocalePage(language: 'Deutsch', tester: tester);
+    await tester.testLocalePage(language: 'Deutsch');
     await expectLocale('de_DE.UTF-8');
 
     await tester.testAccessibilityPage();

@@ -11,7 +11,6 @@ extension UbuntuProvisionPageTester on WidgetTester {
   Future<void> testLocalePage({
     String? language,
     String? screenshot,
-    required WidgetTester tester,
   }) async {
     await pumpUntilPage(LocalePage);
 
@@ -36,8 +35,8 @@ extension UbuntuProvisionPageTester on WidgetTester {
       await takeScreenshot(screenshot);
     }
 
-    await tester.tapNext();
-    await tester.pumpAndSettle();
+    await tapNext();
+    await pumpAndSettle();
   }
 
   Future<void> testAccessibilityPage({
