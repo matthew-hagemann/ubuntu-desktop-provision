@@ -36,8 +36,6 @@ void main() {
     );
 
     await tester.testLocalePage(language: 'Deutsch');
-    await tester.tapNext();
-    await tester.pumpAndSettle();
 
     await tester.testAccessibilityPage();
     await tester.tapNext();
